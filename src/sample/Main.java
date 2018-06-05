@@ -25,10 +25,16 @@ public class Main extends Application {
         box.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                boolean state;
                 if(newValue.equals("Mark/Group/Name")) {
-                    Controller.start(true);
+                    state = true;
                 }else{
-                    System.out.println("new value = " + newValue);
+                    state = false;
+                }
+                try {
+                    Controller.start(state);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
